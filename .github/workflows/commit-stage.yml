@@ -29,9 +29,8 @@ jobs:
           path: "${{github.workspace}}"
           fail-build: false
           severity-cutoff: high
-          acs-report-enable: true
       - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         if: success() || failure()
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
@@ -54,9 +53,9 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-            distribution: temurin
-            java-version: 17
-            cache: gradle
+          distribution: temurin
+          java-version: 17
+          cache: gradle
       - name: Build container image
         run: |
           chmod +x gradlew
@@ -68,9 +67,8 @@ jobs:
           image: ${{ env.REGISTRY}}/${{ env.IMAGE_NAME}}:${{ env.VERSION}}
           fail-build: false
           severity-cutoff: 'high'
-          acs-report-enable: true
       - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         if: success() || failure()
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
@@ -82,4 +80,3 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish container image
         run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}:${{ env.VERSION}}
-          
