@@ -1,7 +1,7 @@
 # Build
 custom_build(
     # Name of the container image
-    ref = 'catalog-service',  # <--- ВОТ ЗДЕСЬ БЫЛА ОШИБКА (нужна запятая)
+    ref = 'catalog-service',
 
     # Command to build the container image
     command = 'gradlew.bat bootBuildImage --imageName %EXPECTED_REF%',
