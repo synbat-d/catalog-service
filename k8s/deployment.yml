@@ -34,4 +34,4 @@ spec:
             - name: SPRING_CLOUD_CONFIG_FAIL_FAST
               value: "false"
             - name: SPRING_CLOUD_CONFIG_URI
-              value: http://config-service:80
+              value: http://config-service
