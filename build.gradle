@@ -6,6 +6,7 @@ plugins {
 ext {
 	springCloudVersion = "2025.0.1"
 	set('testcontainersVersion', "1.17.3")
+	set('testKeycloakVersion', "2.3.0")
 }
 
 group = 'com.polarbookshop'
@@ -46,6 +47,8 @@ dependencies {
 	testImplementation 'org.testcontainers:junit-jupiter'
 	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
 	testImplementation 'org.testcontainers:postgresql'
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation "com.github.dasniko:testcontainers-keycloak:${testKeycloakVersion}"
 	runtimeOnly 'org.postgresql:postgresql'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
