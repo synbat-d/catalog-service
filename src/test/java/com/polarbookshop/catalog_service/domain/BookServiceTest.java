@@ -27,7 +27,7 @@ class BookServiceTest {
         when(bookRepository.existsByIsbn(bookIsbn)).thenReturn(true);
         assertThatThrownBy(() -> bookService.addBookToCatalog(bookToCreate))
                 .isInstanceOf(BookAlreadyExistsException.class)
-                .hasMessage("A book with ISBN " + bookIsbn + " already exists.");
+                .hasMessage("A book with ISBN " + bookIsbn + " already exists!");
     }
 
 	@Test
@@ -36,7 +36,7 @@ class BookServiceTest {
 		when(bookRepository.findByIsbn(bookIsbn)).thenReturn(Optional.empty());
 		assertThatThrownBy(() -> bookService.viewBookDetails(bookIsbn))
 				.isInstanceOf(BookNotFoundException.class)
-				.hasMessage("The book with ISBN " + bookIsbn + " was not found.");
+				.hasMessage("The book with ISBN " + bookIsbn + " was not found in the catalog!");
 	}
 
 }
