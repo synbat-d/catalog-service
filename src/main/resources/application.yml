@@ -50,13 +50,15 @@ management:
   endpoints:
     web:
       exposure:
-        include: configprops, env, flyway, health, heapdump, info, loggers, mappings, prometheus
+        include: flyway, health, prometheus, refresh, heapdump, info, threaddump
   endpoint:
     health:
       show-details: always
       show-components: always
       probes:
         enabled: true
+    heapdump:
+      enabled: true
   info:
     env:
       enabled: true
