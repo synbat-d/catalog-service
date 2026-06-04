@@ -45,8 +45,12 @@ jobs:
         with:
           kubeconform: latest
       - name: Validate Kubernetes manifests
-        run: |
-          kubeconform --strict k8s
+        uses: stefanprodan/kube-tools@v2
+        with:
+          kubectl: 1.24.3
+          kubeval: 0.16.1
+          command: |
+            kustomize build k8s | kubeval --strict -
   package:
     name: Package and Publish
     if: ${{ github.ref == 'refs/heads/main' }}
